@@ -30,3 +30,9 @@ So, in this example, 2 reports are safe.
 
 Analyze the unusual data from the engineers. How many reports are safe?
 '''
+
+
+#* Parse data
+with open('Day2/input.txt', 'r') as file:
+    levels = [list(map(int, level.split(' '))) for level in file.readlines()]
+
