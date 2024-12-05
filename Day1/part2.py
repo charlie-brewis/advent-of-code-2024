@@ -25,6 +25,7 @@ So, for these example lists, the similarity score at the end of this process is 
 '''
 
 
+#* Load data into lists
 left_list = []
 right_list = []
 with open('Day1/input.txt', 'r') as file:
@@ -33,5 +34,17 @@ with open('Day1/input.txt', 'r') as file:
        left_list.append(int(split_line[0]))
        right_list.append(int(split_line[1]))
 
-print(left_list)
+#* Precompute the counts of numbers in the right list
+right_count = {}
+for num in right_list:
+    right_count[num] = right_count[num] + 1 if num in right_count else 1
 
+#* Compute similarity score
+similarity_score = 0
+for num in left_list:
+    if num in right_count:
+        similarity_score += num * right_count[num]
+        
+
+print(right_count)
+print(similarity_score)
