@@ -28,17 +28,20 @@ import heapq
 # Read from file and populate heaps
 left_heap = []
 right_heap = []
-with open('Day1/input.txt', 'r') as file:
+with open('Day1/input.txt', 'r') as file: # O(n)
     for line in file:
         left_num, right_num = line.split("   ")
         heapq.heappush(left_heap, int(left_num))
-        heapq.heappush(right_heap, int(right_num))
+        heapq.heappush(right_heap, int(right_num)) # O(log n)
 
 sum: int = 0
-while (len(left_heap) > 0):
+while (len(left_heap) > 0): # O(n)
     left_heap_smallest = heapq.heappop(left_heap)
-    right_heap_smallest = heapq.heappop(right_heap)
+    right_heap_smallest = heapq.heappop(right_heap) # O(log n)
     difference = abs(left_heap_smallest - right_heap_smallest)
     sum += difference
 
 print(sum)
+
+
+# Time complexity: O(n log n)
