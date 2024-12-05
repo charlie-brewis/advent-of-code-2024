@@ -21,3 +21,24 @@ all of the pairs you found. In the example above, this is 2 + 1 + 0 + 1 + 2 + 5,
 
 Your actual left and right lists contain many location IDs. What is the total distance between your lists?
 '''
+
+
+import heapq
+
+# Read from file and populate heaps
+left_heap = []
+right_heap = []
+with open('Day1/input.txt', 'r') as file:
+    for line in file:
+        left_num, right_num = line.split("   ")
+        heapq.heappush(left_heap, int(left_num))
+        heapq.heappush(right_heap, int(right_num))
+
+sum: int = 0
+while (len(left_heap) > 0):
+    left_heap_smallest = heapq.heappop(left_heap)
+    right_heap_smallest = heapq.heappop(right_heap)
+    difference = abs(left_heap_smallest - right_heap_smallest)
+    sum += difference
+
+print(sum)
