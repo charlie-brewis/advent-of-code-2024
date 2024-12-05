@@ -34,5 +34,18 @@ Analyze the unusual data from the engineers. How many reports are safe?
 
 #* Parse data
 with open('Day2/input.txt', 'r') as file:
-    levels = [list(map(int, level.split(' '))) for level in file.readlines()]
+    reports = [list(map(int, level.split(' '))) for level in file.readlines()]
 
+#* Solution
+num_safe = 0
+for report in reports:
+    differences = [report[i + 1] - report[i] for i in range(len(report) - 1)]
+    all_differences_valid = all(1 <= abs(diff) <= 3 for diff in differences)
+
+    is_increasing = all(diff > 0 for diff in differences)
+    is_decreasing = all(diff < 0 for diff in differences)
+
+    if all_differences_valid and (is_increasing or is_decreasing):
+        num_safe += 1
+
+print(num_safe)
